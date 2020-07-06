@@ -1,20 +1,33 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useContext,
+} from 'react';
 
 import { AlertContext } from '../context/alert/alertContext';
 import { FirebaseContext } from '../context/firebase/firebaseContext';
 
 import { OverlayLoader } from '../hoc/OverlayLoader/OverlayLoader';
 
-const FormWithoutOverlay = ({ isShowLoading, setShowLoading }) => {
+
+type Props = {
+  isShowLoading: boolean
+  setShowLoading: (isShowLoading: boolean) => void
+}
+
+const FormWithoutOverlay = ({ isShowLoading, setShowLoading }: Props) => {
 
   const [value, setValue] = useState('')
   const alert = useContext(AlertContext)
   const firebase = useContext(FirebaseContext)
 
-  const formInputRef = useRef();
+  const formInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    formInputRef.current.focus()
+    if (formInputRef.current) {
+      formInputRef.current.focus()
+    }
   }, [])
 
   
@@ -22,32 +35,41 @@ const FormWithoutOverlay = ({ isShowLoading, setShowLoading }) => {
   const addNoteSuccessHandler = () => {
     setValue('');
     
+    // @ts-ignore
     alert.show('Заметка была создана', 'success')
   }
 
-  const addNoteErrorHandler = (err) => {
-    console.error(err)
+  const addNoteErrorHandler = (errorMessage: string) => {
+    console.error(errorMessage)
+
+    // @ts-ignore
     alert.show('Что-то пошло не так', 'danger')
   }
 
   const addNoteEndHandler = () => {
     setShowLoading(false)
-    formInputRef.current.focus()
+
+    if (formInputRef.current) {
+      formInputRef.current.focus()
+    }
   }
 
-  const sumbitHandler = evt => {
-    evt.preventDefault();
+  const sumbitHandler = (event: React.FormEvent) => {
+    event.preventDefault();
 
-    if (value.trim()) {
-      setShowLoading(true)
-
-      firebase.addNote(value.trim())
-        .then(addNoteSuccessHandler)
-        .catch(addNoteErrorHandler)
-        .finally(addNoteEndHandler)
-    } else {
+    if (!value.trim()) {
+      // @ts-ignore
       alert.show('Введите название заметки')
+      return
     }
+
+    setShowLoading(true)
+
+    // @ts-ignore
+    firebase.addNote(value.trim())
+      .then(addNoteSuccessHandler)
+      .catch(addNoteErrorHandler)
+      .finally(addNoteEndHandler)
   }
 
   return (

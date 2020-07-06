@@ -1,8 +1,15 @@
-import React, { useReducer } from 'react';
 import axios from 'axios';
+import React, { useReducer } from 'react';
+
+import { StateType, NoteType } from './types'
 import { FirebaseContext } from './firebaseContext';
 import { firebaseReducer } from './firebaseReducer';
-import { SHOW_LOADER, REMOVE_NOTE, ADD_NOTE, FETCH_NOTES } from '../types';
+import {
+  SHOW_LOADER,
+  REMOVE_NOTE,
+  FETCH_NOTES,
+  ADD_NOTE,
+} from '../actionTypes';
 
 const url = `${process.env.REACT_APP_API_HOST}${process.env.REACT_APP_API_ROOT || ''}`;
 
@@ -10,14 +17,18 @@ if (!url) {
   throw new Error('REACT_APP_API_HOST в .env не установлен')
 }
 
-export const FirebaseState = ({ children }) => {
-  const initialState = {
+
+
+export const FirebaseState = ({ children }: { children: React.ReactElement }) => {
+  const initialState: StateType = {
     notes: [],
     loading: false
   }
 
+  // @ts-ignore
   const [ state, dispatch ] = useReducer(firebaseReducer, initialState)
 
+  // @ts-ignore
   const showLoader = () => dispatch({ type: SHOW_LOADER })
 
   const fetchNotes = async () => {
@@ -34,12 +45,12 @@ export const FirebaseState = ({ children }) => {
     })
 
     dispatch({
-      type:FETCH_NOTES,
+      type: FETCH_NOTES,
       payload: payload || []
     })
   }
 
-  const addNote = async title => {
+  const addNote = async (title: string) => {
     const note = {
       title,
       date: new Date().toJSON()
@@ -53,6 +64,7 @@ export const FirebaseState = ({ children }) => {
         id: res.data.name
       }
 
+      // @ts-ignore
       dispatch({
         type: ADD_NOTE,
         payload
@@ -62,9 +74,10 @@ export const FirebaseState = ({ children }) => {
     }
   }
 
-  const removeNote = async id => {
+  const removeNote = async (id: NoteType["id"]) => {
     await axios.delete(`${url}/notes/${id}.json`)
 
+    // @ts-ignore
     dispatch({ 
       type: REMOVE_NOTE,
       payload: id

@@ -1,17 +1,14 @@
 import React from 'react';
-import { Loader } from '../../components/Loader';
+
 import classes from './OverlayLoader.module.scss';
+import { Loader } from '../../components/Loader';
 
 
-export const OverlayLoader = (Component, isShowLoading, CustomTag = 'div', customClasses = []) => {
+export const OverlayLoader = (Component: any, isShowLoading: boolean, CustomTag = 'div', customClasses: string[] = []) => {
 
   return class extends React.Component {
-    constructor(props) {
-      super(props)
-
-      this.state = {
-        isShowLoading,
-      }
+    state = {
+      isShowLoading
     }
 
     render() {
@@ -21,11 +18,15 @@ export const OverlayLoader = (Component, isShowLoading, CustomTag = 'div', custo
         wrapperClasses.push(classes['overlay-loader_active'])
       }
 
-      const setShowLoading = (isShowLoading) => {
+      const setShowLoading = (isShowLoading: boolean) => {
         this.setState({ isShowLoading })
       }
 
+      console.log({ CustomTag });
+  
+
       return (
+        // @ts-ignore
         <CustomTag className={wrapperClasses.join(' ')}>
           {this.state.isShowLoading && <Loader className={classes['overlay-loader__loader']} />}
           <Component setShowLoading={setShowLoading} isShowLoading={this.state.isShowLoading} {...this.props} />

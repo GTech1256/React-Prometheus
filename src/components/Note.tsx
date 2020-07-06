@@ -1,22 +1,34 @@
 import React, { useContext, Fragment } from 'react';
 import { OverlayLoader } from '../hoc/OverlayLoader/OverlayLoader';
 import { AlertContext } from '../context/alert/alertContext';
+import { NoteType } from '../context/firebase/types';
 
-export const NoteWithoutLoader = ({ note, onRemove, setShowLoading }) => {
+
+type Props = {
+  note: NoteType
+  onRemove: (id: NoteType['id']) => Promise<any>
+  setShowLoading: (isShowLoading: boolean) => void
+}
+
+export const NoteWithoutLoader = ({ note, onRemove, setShowLoading }: Props) => {
 
   const alert = useContext(AlertContext)
 
   const onRemoveSuccessHandler = () => {
+    // @ts-ignore
     alert.show('Заметка успешно удалена', 'success')
   }
 
-  const onRemoveErrorHandler = (err) => {
-    console.log(err)
+  const onRemoveErrorHandler = (errorMessage: string) => {
+    console.log(errorMessage)
+
+    // @ts-ignore
     alert.show('Что-то пошло не так', 'danger')
   }
 
   const btnNoteClickHandler = () => {
     setShowLoading(true)
+
     onRemove(note.id)
       .then(onRemoveSuccessHandler)
       .catch(onRemoveErrorHandler)
