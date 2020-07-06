@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "12.18.2"
+
+stages:
+  - tests
+
+jobs:
+  include:
+    - stage: tests
+      language: node_js
+      node_js:
+        - "12.18.2"
+      script:
+        - yarn run test
