@@ -1,68 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Prometheus &middot; [![Build Status](https://travis-ci.com/GTech1256/TestTaskFrontEnd-6.svg?branch=master)](https://travis-ci.com/GTech1256/TestTaskFrontEnd-6)
 
-## Available Scripts
+## Установка
 
-In the project directory, you can run:
+### Prerequriements
 
-### `yarn start`
+1. [Node](https://nodejs.org/en/download/)
+1. [Yarn](https://yarnpkg.com/getting-started).
+1. [Firebase](https://firebase.google.com/docs/cli)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Сборка
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Установка зависимостей
 
-### `yarn test`
+Все зависимости подтянутся и попадут в папку npm_modules
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+yarn
+```
 
-### `yarn build`
+### Инициализация Firebase
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Создать проект на Firebase
+1. Вести `firebase login`
+1. Вести `firebase init`
+1. Выбрать только Hosting и слудующие параметры:
+    1. *? What do you want to use as your public directory?* **build**
+    1. *? Configure as a single-page app (rewrite all urls to /index.html)?* **Yes**
+    1. *? File build/index.html already exists. Overwrite?* **No**
+1. Создать Базу Данных от Firebase
+1. Вписать путь до БД, который указан на сайте в REACT_APP_API_HOST
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Development-режим
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Инициализация dev окружения по умолчанию
 
-### `yarn eject`
+```bash
+cp .env.dev .env
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Проект соберется, запустится мелкий сервер статики на 3000 порту, изменения файлов будут отслеживаться и проект пересобираться
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Production-режим
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Инициализация prod окружения по умолчанию
 
-## Learn More
+```bash
+cp .env.prod .env
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Создание папки `build` с собранным приложением для развертывания
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn build
+```
 
-### Code Splitting
+#### Развертывание на Firebase
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+firebase deploy
+```
 
-### Analyzing the Bundle Size
+## Настройка окружения вручную
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+По умолчанию параметры вычитываются из файла `.env` (в git не выкладывается) и могут быть переопределены через переменные окружения системы (приоритет у переменных окружения системы).
+В корне проекта доступны примеры файлов `.env` для разных режимов запуска (их можно использовать для формирования локального `.env`):
 
-### Making a Progressive Web App
+- `.env.dev` - параметры для запуска в development-режиме;
+- `.env.prod` - параметры для запуска в production-режиме.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Доступные параметры:
 
-### Advanced Configuration
+| Код                | Код в Docker | Описание                                         |
+|--------------------|--------------|--------------------------------------------------|
+| REACT_APP_API_HOST | -            | хост API backend                                 |
+| REACT_APP_API_ROOT | -            | корневой URL API backend (относительно API_HOST) |
+|                    |              |                                                  |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Управление зависимостями
 
-### Deployment
+Управление зависимостями осуществляется с помощью [Yarn](https://yarnpkg.com/getting-started).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Текущие используемые версии зафиксированы в `yarn.lock`.
 
-### `yarn build` fails to minify
+Добавление и удаление зависимостей должно осуществлятся **только** средвствами `YARN`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- `yarn add <package>@[version]`
+- `yarn up [package]@[version]`
+- `yarn remove <package>`
