@@ -1,4 +1,4 @@
-# Prometheus &middot; [![Build Status](https://travis-ci.com/GTech1256/TestTaskFrontEnd-6.svg?branch=master)](https://travis-ci.com/GTech1256/TestTaskFrontEnd-6)
+# Prometheus &middot; [![Build Status](https://travis-ci.com/GTech1256/prometheus.svg?branch=master)](https://travis-ci.com/GTech1256/prometheus)
 
 ## Установка
 

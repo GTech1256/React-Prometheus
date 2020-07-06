@@ -5,6 +5,7 @@ import { FirebaseContext } from '../context/firebase/firebaseContext';
 import { Loader } from '../components/Loader';
 
 export const Home = () => {
+  // @ts-ignore
   const { loading, notes, fetchNotes, removeNote } = useContext(FirebaseContext)
 
   useEffect(() => {
