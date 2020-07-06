@@ -4,7 +4,11 @@ import { FirebaseContext } from './firebaseContext';
 import { firebaseReducer } from './firebaseReducer';
 import { SHOW_LOADER, REMOVE_NOTE, ADD_NOTE, FETCH_NOTES } from '../types';
 
-const url = process.env.REACT_APP_DB_URL;
+const url = `${process.env.REACT_APP_API_HOST}${process.env.REACT_APP_API_ROOT || ''}`;
+
+if (!url) {
+  throw new Error('REACT_APP_API_HOST в .env не установлен')
+}
 
 export const FirebaseState = ({ children }) => {
   const initialState = {
@@ -18,7 +22,9 @@ export const FirebaseState = ({ children }) => {
 
   const fetchNotes = async () => {
     showLoader()
-    const res = await axios.get(`${url}/notes.json`)
+
+    // redux-thunk
+    const res = await axios.get(`${url}/notes.json`) // null || Note[]
 
     const payload = Object.keys(res.data).map(key => {
       return {
@@ -29,7 +35,7 @@ export const FirebaseState = ({ children }) => {
 
     dispatch({
       type:FETCH_NOTES,
-      payload
+      payload: payload || []
     })
   }
 
