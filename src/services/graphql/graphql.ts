@@ -1,5 +1,5 @@
-import { ApolloClient, createHttpLink, InMemoryCache, gql  } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 
 import { getGithubToken } from '../github';
 
@@ -24,41 +24,3 @@ export const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
-
-// test GraphQL fetch 
-
-type Repositories = {
-  search: {
-    edges: []
-  }
-}
-
-export const getRepositories = async () => {
-  const res = await client
-    .query<Repositories>({
-      query: gql`
-      query {
-        search(type: REPOSITORY, query: "language:javascript stars:>1600", first:10) {
-          edges {
-            node {
-              ... on Repository {
-                name
-                url
-                stargazers {
-                  totalCount
-                }
-                owner{
-                  login
-                }
-              }
-            }
-          }
-        }
-      }
-      `
-    })
-
-    return res.data?.search.edges
-}
-
-getRepositories().then(console.log)
