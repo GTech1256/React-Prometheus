@@ -1,0 +1,1 @@
+export { client, getRepositories } from './graphql';
