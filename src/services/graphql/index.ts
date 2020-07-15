@@ -1,1 +1,1 @@
-export { client, getRepositories } from './graphql';
+export { client } from './graphql';

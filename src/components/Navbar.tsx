@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { ROUTE_NAME, ROUTE_URL } from '../pages/Repositories';
 
 
 export const Navbar = () => (
@@ -23,6 +24,14 @@ export const Navbar = () => (
           to="/about"
         >
           Информация
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink 
+          className="nav-link" 
+          to={ROUTE_URL}
+        >
+          {ROUTE_NAME}
         </NavLink>
       </li>
     </ul>
