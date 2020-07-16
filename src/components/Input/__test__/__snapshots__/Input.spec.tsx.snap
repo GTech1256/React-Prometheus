@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Repositories /> should render correct 1`] = `
+<div
+  className="input-group mb-3 test-class-name"
+>
+  <input
+    aria-describedby="basic-addon1"
+    aria-label="testSelect"
+    className="form-control"
+    name="testSelect"
+    onChange={[Function]}
+  />
+</div>
+`;

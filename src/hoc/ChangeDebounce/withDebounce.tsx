@@ -26,6 +26,7 @@ function useDebounce(value: any, delay = 300) {
  * 
  * Без onChange бессмысленно использовать этот HOC
  * */
+// TOOD: Нормальные дженерики написать без <V extends unkown>
 const withDebounce = (Component: React.ComponentType<any>, delay = 500) =>
   class extends React.Component<any, any> {
     debouncedValue = undefined

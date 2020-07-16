@@ -29,6 +29,28 @@ exports[`<Repositories /> should render correct 1`] = `
       </option>
     </select>
   </div>
+  <div
+    className="input-group mb-3 "
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <label
+        className="input-group-text"
+        htmlFor="repositoryName"
+      >
+        Имя репозитория
+      </label>
+    </div>
+    <input
+      aria-describedby="basic-addon1"
+      aria-label="repositoryName"
+      className="form-control"
+      name="repositoryName"
+      onChange={[Function]}
+      placeholder="Введите имя репозитория"
+    />
+  </div>
   <p>
     Загрузка Репозиториев...
   </p>
