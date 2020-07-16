@@ -4,7 +4,7 @@ import { LicenseType } from './types';
 
 
 
-export type Query = {
+export type QueryType = {
   licenses: ({ __typename: "License" } & Pick<LicenseType, 'name'>)[]
 }
 
