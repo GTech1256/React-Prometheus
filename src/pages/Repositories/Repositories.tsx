@@ -1,23 +1,39 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { ALL_REPOSITORIES, Query } from '../../services/graphql/queries/getAllRepositories';
+import RepositoriesLicenseSelect from './containers/RepositoriesLicenseSelect';
 import RepositoriesView from './components/RepositoriesView';
+import {
+  AllRepositoriesQueryType,
+  getRepositiryQueryString,
+  ALL_REPOSITORIES,
+} from '../../services/graphql/queries/getAllRepositories';
+import { SelectProps } from '../../components/Select';
 
 
 const Repositories = () => {
-  const { loading, error, data } = useQuery<Query>(ALL_REPOSITORIES);
-
-  if (loading) return <p>Loading...</p>
-
-  if (error) return <p>Error</p>
-
-  console.log({ data });
+  const [license, setLicense] = useState<string| undefined>(undefined)
   
+  const { loading, error, data } = useQuery<AllRepositoriesQueryType>(ALL_REPOSITORIES, {
+    variables: { query: getRepositiryQueryString(license) },
+  });
+
+  const handleLicenseSelect = useCallback<SelectProps['onChange']>(setLicense, [])
 
   return (
     <div>
-      {!data ? <p>no Data </p> : <RepositoriesView reposetories={data.search.edges} />}
+      <RepositoriesLicenseSelect
+        value={license}
+        onChange={handleLicenseSelect}
+        name="repositoriesLicenseSelect"
+      />
+      {
+        loading ? <p>Загрузка Репозиториев...</p> :
+        error ? <p>Не удалось загрузить репозиториии</p> :
+        data?.search.edges.length === 0 ?
+          <p>Репозиториев по такому фильтру не найдено</p> :
+          <RepositoriesView reposetories={data!.search.edges} />
+      }
     </div>
   )
 }

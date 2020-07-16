@@ -1,23 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
+import { RepositoryResponseType } from '../../../../../services/graphql/queries/getAllRepositories';
 import RepositoryView from '../RepositoryView';
-import { Repository } from '../../../types';
 
 
-describe('<Repositories />', () => {
+describe('<RepositoryView />', () => {
   it('should render correct', () => {
-    const props: Repository = {
-      node: {
-        name: 'name',
-        owner: {
-          login: 'login'
-        },
-        url: 'url',
-        stargazers: { totalCount: 999 }
+    const props: RepositoryResponseType = {
+      name: 'name',
+      owner: {
+        login: 'login'
       },
-      __typename: 'SearchResultItemEdge'
-    };
+      url: 'url',
+      stargazers: { totalCount: 999 }
+    }
 
     const tree = renderer
       .create(<RepositoryView {...props} />)

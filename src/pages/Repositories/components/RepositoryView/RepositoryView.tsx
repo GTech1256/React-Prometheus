@@ -1,19 +1,16 @@
 import React from 'react';
 
-import { Repository } from '../../types';
+import { RepositoryResponseType } from '../../../../services/graphql/queries/getAllRepositories';
 import style from './style.module.scss'
 
 
-type Props = Repository
-
+type Props = RepositoryResponseType
 
 const RepositoryView = ({
-  node: {
-    url,
-    name,
-    stargazers,
-    owner,
-  }
+  url,
+  name,
+  stargazers,
+  owner,
 }: Props) => {
   return (
     <a href={url} className="list-group-item list-group-item-action">

@@ -11,11 +11,10 @@ const reposetory = {
     },
     url: 'url',
     stargazers: { totalCount: 999 }
-  },
-  __typename: 'SearchResultItemEdge' as 'SearchResultItemEdge'
+  }
 };
 
-describe('<Repositories />', () => {
+describe('<RepositoriesView />', () => {
   it('should render correct', () => {
     const props = {
       reposetories: [

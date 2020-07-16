@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RepositoriesLicenseSelect /> should render correct 1`] = `
+<div
+  className="input-group mb-3 "
+>
+  <div
+    className="input-group-prepend"
+  >
+    <label
+      className="input-group-text"
+      htmlFor="test"
+    >
+      Лицензия
+    </label>
+  </div>
+  <select
+    className="custom-select"
+    defaultValue="DEFAULT"
+    disabled={true}
+    id="test"
+    onChange={[Function]}
+  >
+    <option
+      value="DEFAULT"
+    >
+      Фильтр по лицензии...
+    </option>
+  </select>
+</div>
+`;

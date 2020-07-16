@@ -1,7 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Repositories /> should render correct 1`] = `
-<p>
-  Loading...
-</p>
+<div>
+  <div
+    className="input-group mb-3 "
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <label
+        className="input-group-text"
+        htmlFor="repositoriesLicenseSelect"
+      >
+        Лицензия
+      </label>
+    </div>
+    <select
+      className="custom-select"
+      defaultValue="DEFAULT"
+      disabled={true}
+      id="repositoriesLicenseSelect"
+      onChange={[Function]}
+    >
+      <option
+        value="DEFAULT"
+      >
+        Фильтр по лицензии...
+      </option>
+    </select>
+  </div>
+  <p>
+    Загрузка Репозиториев...
+  </p>
+</div>
 `;

@@ -1,11 +1,12 @@
 import React from 'react';
 
+
+import { AllRepositoriesQueryType } from '../../../../services/graphql/queries/getAllRepositories';
 import RepositoryView from '../RepositoryView';
-import { Repository } from '../../types';
 
 
 type Props = {
-  reposetories: Repository[]
+  reposetories: AllRepositoriesQueryType['search']['edges']
 }
 
 const RepositoriesView = ({
@@ -14,7 +15,7 @@ const RepositoriesView = ({
   return (
     <div>
       <div className="list-group">
-        {reposetories.map(reposetory => <RepositoryView key={reposetory.node.url} {...reposetory} />)}
+        {reposetories.map(({ node: reposetory }) => <RepositoryView key={reposetory.url} {...reposetory} />)}
       </div>
     </div>
   )
