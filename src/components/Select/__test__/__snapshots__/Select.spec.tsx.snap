@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Repositories /> should render correct 1`] = `
+<div
+  className="input-group mb-3 test-class-name"
+>
+  <div
+    className="input-group-prepend"
+  >
+    <label
+      className="input-group-text"
+      htmlFor="testSelect"
+    >
+      testTitle
+    </label>
+  </div>
+  <select
+    className="custom-select"
+    id="testSelect"
+  >
+    <option
+      selected={true}
+      value="value1"
+    >
+      lebel1
+    </option>
+    <option
+      selected={false}
+      value="value3"
+    >
+      lebel2
+    </option>
+  </select>
+</div>
+`;
