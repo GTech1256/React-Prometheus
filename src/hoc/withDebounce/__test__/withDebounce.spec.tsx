@@ -1,7 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import withDebounce from '../withDebounce'
+import withDebounce from '../index'
+
 
 const SomeComponent = () => <input />
 

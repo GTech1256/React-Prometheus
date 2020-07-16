@@ -43,9 +43,7 @@ const Select = ({
         <div className="input-group-prepend">
           <label className="input-group-text" htmlFor={name}>{title}</label>
         </div>
-      )
-      }
-  
+      )}
       <select
         className="custom-select"
         id={name}

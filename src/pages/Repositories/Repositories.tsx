@@ -7,11 +7,11 @@ import {
   AllRepositoriesQueryType,
   getRepositiryQueryString,
   ALL_REPOSITORIES,
+  MIN_STARS_COUNT,
 } from '../../services/graphql/queries/getAllRepositories';
 import { SelectProps } from '../../components/Select';
-import withDebounce from '../../hoc/ChangeDebounce/withDebounce';
+import withDebounce from '../../hoc/withDebounce';
 import Input from '../../components/Input';
-
 
 const InputWithDebounce = withDebounce(Input)
 const RepositoriesLicenseSelectWithDebounce = withDebounce(RepositoriesLicenseSelect)
@@ -29,6 +29,14 @@ const Repositories = () => {
 
   return (
     <div>
+      <div className="alert alert-primary" role="alert">
+        Репозитории с менее чем {MIN_STARS_COUNT} звезд не будут найдены из-за &nbsp;
+        <a
+          href="https://docs.github.com/en/github/searching-for-information-on-github/troubleshooting-search-queries#potential-timeouts"
+          target="_blank"
+          rel="noopener noreferrer"
+        >ограничений GitHub</a>
+      </div>
       <RepositoriesLicenseSelectWithDebounce
         value={license}
         onChange={handleLicenseSelect}

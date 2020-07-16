@@ -1,23 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Select, { SelectProps } from '../index'
+import Input, { InputProps } from '../index'
 
-const props: SelectProps = {
+
+const props: InputProps = {
   className: 'test-class-name',
   name: 'testSelect',
-  title: 'testTitle',
-  options: [
-    { value: 'value1', label: 'lebel1', isSelected: true },
-    { value: 'value3', label: 'lebel2' }
-  ]
-
+  label: 'testTitle',
+  onChange: () => {}
 }
 
-describe('<Repositories />', () => {
+describe('<Input />', () => {
   it('should render correct', () => {
     const tree = renderer
-      .create(<Select {...props} />)
+      .create(<Input {...props} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

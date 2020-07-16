@@ -3,6 +3,21 @@
 exports[`<Repositories /> should render correct 1`] = `
 <div>
   <div
+    className="alert alert-primary"
+    role="alert"
+  >
+    Репозитории с менее чем 
+    1600
+     звезд не будут найдены из-за  
+    <a
+      href="https://docs.github.com/en/github/searching-for-information-on-github/troubleshooting-search-queries#potential-timeouts"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      ограничений GitHub
+    </a>
+  </div>
+  <div
     className="input-group mb-3 "
   >
     <div

@@ -1,25 +1,5 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React from 'react'
 
-
-function useDebounce(value: any, delay = 300) {
-  // State and setters for debounced value
-  const [debouncedValue, setDebouncedValue] = useState<any>(value);
-
-  useEffect(
-    () => {
-      const handler = setTimeout(() => {
-        setDebouncedValue(value);
-      }, delay);
-
-      return () => {
-        clearTimeout(handler);
-      };
-    },
-    [delay, value] 
-  );
-
-  return debouncedValue;
-}
 
 /**
  * Обертка над onChange каллбэком
@@ -37,9 +17,7 @@ const withDebounce = (Component: React.ComponentType<any>, delay = 500) =>
         clearTimeout(this.currentTimeout);
       }
 
-      this.currentTimeout = setTimeout(() => {
-        this.props.onChange(value);
-      }, delay);
+      this.currentTimeout = setTimeout(this.props.onChange, delay, value);
     }
 
     render() {
