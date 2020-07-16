@@ -1,5 +1,7 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useCallback } from 'react'
 
+
+const DEFAULT_VALUE = 'DEFAULT'
 
 type OptionType = {
   value: string,
@@ -14,7 +16,7 @@ export type Props = {
   isLoading?: boolean
   value?: OptionType['value']
   options: OptionType[]
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+  onChange: (newValue: OptionType['value'] | undefined) => void
 }
 
 const renderOption = ({
@@ -29,26 +31,33 @@ const Select = ({
   options,
   onChange,
   isLoading = false,
-}: Props) => (
-  <div className={`input-group mb-3 ${className}`}>
-    {title && (
-      <div className="input-group-prepend">
-        <label className="input-group-text" htmlFor={name}>{title}</label>
-      </div>
-    )
-    }
+}: Props) => {
+  // Возвращает undefined, если выбрано дефолтное поле
+  const handleChange = useCallback<(event: ChangeEvent<HTMLSelectElement>) => void>(({ target: { value } }) => {
+    onChange(value === DEFAULT_VALUE ? undefined : value)
+  }, [onChange])
 
-    <select
-      className="custom-select"
-      id={name}
-      onChange={onChange}
-      defaultValue="DEFAULT"
-      disabled={isLoading}
-    >
-      <option value="DEFAULT">Фильтр по лицензии...</option>
-      {options.map(renderOption)}
-    </select>
-  </div>
-)
+  return (
+    <div className={`input-group mb-3 ${className}`}>
+      {title && (
+        <div className="input-group-prepend">
+          <label className="input-group-text" htmlFor={name}>{title}</label>
+        </div>
+      )
+      }
+  
+      <select
+        className="custom-select"
+        id={name}
+        onChange={handleChange}
+        defaultValue={DEFAULT_VALUE}
+        disabled={isLoading}
+      >
+        <option value={DEFAULT_VALUE}>Фильтр по лицензии...</option>
+        {options.map(renderOption)}
+      </select>
+    </div>
+  )
+}
 
 export default Select;

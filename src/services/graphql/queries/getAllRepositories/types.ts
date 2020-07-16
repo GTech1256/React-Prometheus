@@ -1,3 +1,5 @@
+import { LicenseType } from "../getAllLicensies"
+
 /** incomplete description */
 type UserType = {
   id: string
@@ -41,4 +43,5 @@ export type RepositoryType = {
   owner: RepositoryOwnerType
   url: string
   stargazers: StargazerConnectionType
+  licenseInfo: LicenseType
 }

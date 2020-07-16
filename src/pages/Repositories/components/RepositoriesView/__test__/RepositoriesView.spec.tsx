@@ -14,7 +14,7 @@ const reposetory = {
   }
 };
 
-describe('<Repositories />', () => {
+describe('<RepositoriesView />', () => {
   it('should render correct', () => {
     const props = {
       reposetories: [

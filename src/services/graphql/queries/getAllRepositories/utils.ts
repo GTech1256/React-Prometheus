@@ -1,0 +1,1 @@
+export const getRepositiryQueryString = (license?: string) => `${license ? `license:${license}` : ''} language:javascript stars:>1600`

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Repositories /> should render correct 1`] = `
+exports[`<RepositoryView /> should render correct 1`] = `
 <a
   className="list-group-item list-group-item-action"
   href="url"

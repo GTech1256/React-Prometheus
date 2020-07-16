@@ -1,29 +1,21 @@
 import React from 'react';
+import { ApolloProvider } from '@apollo/client';
 import renderer from 'react-test-renderer';
 
-import RepositoriesView from '../RepositoriesView';
+import RepositoriesLicenseSelect from '../RepositoriesLicenseSelect';
+import { client } from '../../../../../services/graphql';
 
-const reposetory = {
-  node: {
-    name: 'name',
-    owner: {
-      login: 'login'
-    },
-    url: 'url',
-    stargazers: { totalCount: 999 }
-  }
-};
 
-describe('<Repositories />', () => {
+describe('<RepositoriesLicenseSelect />', () => {
   it('should render correct', () => {
     const props = {
-      reposetories: [
-        reposetory
-      ]
+      name: 'test',
+      onChange: () => {},
+      value: undefined
     };
 
     const tree = renderer
-      .create(<RepositoriesView {...props} />)
+      .create(<ApolloProvider client={client}><RepositoriesLicenseSelect {...props} /></ApolloProvider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

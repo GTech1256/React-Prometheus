@@ -23,8 +23,8 @@ export type QueryType = {
 }
 
 export const ALL_REPOSITORIES = gql`
-  query getAllRepositories {
-    search(type: REPOSITORY, query: "language:javascript stars:>1600", first:10) {
+  query getAllRepositories($query: String!) {
+    search(type: REPOSITORY, query: $query, first:10) {
       edges {
         node {
           ... on Repository {
@@ -35,6 +35,9 @@ export const ALL_REPOSITORIES = gql`
             }
             owner {
               login
+            }
+            licenseInfo {
+              id
             }
           }
         }

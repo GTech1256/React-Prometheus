@@ -13,7 +13,7 @@ const RepositoriesLicenseSelect = (props: Props) => {
   const options = useMemo<SelectProps['options']>(
     () => !data ? 
       [] :
-      data?.licenses.map(license => ({ label: license.name, value: license.name })),
+      data?.licenses.map(license => ({ label: license.name, value: license.key })),
     [data]
     )
 

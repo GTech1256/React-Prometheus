@@ -5,7 +5,7 @@ import { RepositoryResponseType } from '../../../../../services/graphql/queries/
 import RepositoryView from '../RepositoryView';
 
 
-describe('<Repositories />', () => {
+describe('<RepositoryView />', () => {
   it('should render correct', () => {
     const props: RepositoryResponseType = {
       name: 'name',

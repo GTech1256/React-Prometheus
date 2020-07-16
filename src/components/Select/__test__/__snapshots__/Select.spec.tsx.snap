@@ -16,16 +16,22 @@ exports[`<Repositories /> should render correct 1`] = `
   </div>
   <select
     className="custom-select"
+    defaultValue="DEFAULT"
+    disabled={false}
     id="testSelect"
+    onChange={[Function]}
   >
     <option
-      selected={true}
+      value="DEFAULT"
+    >
+      Фильтр по лицензии...
+    </option>
+    <option
       value="value1"
     >
       lebel1
     </option>
     <option
-      selected={false}
       value="value3"
     >
       lebel2
