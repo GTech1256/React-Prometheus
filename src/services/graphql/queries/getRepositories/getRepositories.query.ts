@@ -1,9 +1,10 @@
 import { gql } from '@apollo/client';
 
-import { RepositoryType } from './types';
+import { RepositoryType, PageInfoType } from './types';
 
 
 export type RepositoryResponseType = {
+  description: RepositoryType['description']
   name: RepositoryType['name']
   url: RepositoryType['url']
   stargazers: {
@@ -16,6 +17,7 @@ export type RepositoryResponseType = {
 
 export type QueryType = {
   search: {
+    pageInfo: PageInfoType
     edges: {
       node: RepositoryResponseType
     }[]
@@ -23,11 +25,19 @@ export type QueryType = {
 }
 
 export const ALL_REPOSITORIES = gql`
-  query getAllRepositories($query: String!) {
-    search(type: REPOSITORY, query: $query, first:10) {
+  query getRepositories($query: String!, $after: String, $before: String) {
+    search(type: REPOSITORY, query: $query, first:10, after:$after, before: $before) {
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        startCursor
+      }
       edges {
+
         node {
           ... on Repository {
+            description
             name
             url
             stargazers {
@@ -35,9 +45,6 @@ export const ALL_REPOSITORIES = gql`
             }
             owner {
               login
-            }
-            licenseInfo {
-              id
             }
           }
         }

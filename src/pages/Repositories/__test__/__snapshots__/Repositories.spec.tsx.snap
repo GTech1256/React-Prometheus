@@ -66,7 +66,57 @@ exports[`<Repositories /> should render correct 1`] = `
       placeholder="Введите имя репозитория"
     />
   </div>
-  <p>
+  <nav
+    aria-label="Page navigation example"
+  >
+    <ul
+      className="pagination justify-content-center"
+    >
+      <li
+        className="page-item disabled"
+      >
+        <button
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            «
+          </span>
+          <span
+            className="sr-only"
+          >
+            Предыдущая
+          </span>
+        </button>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <button
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            »
+          </span>
+          <span
+            className="sr-only"
+          >
+            Следующая
+          </span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <p
+    className="text-center"
+  >
     Загрузка Репозиториев...
   </p>
 </div>

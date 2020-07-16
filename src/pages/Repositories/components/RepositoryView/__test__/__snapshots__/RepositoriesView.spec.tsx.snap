@@ -22,7 +22,7 @@ exports[`<RepositoryView /> should render correct 1`] = `
   <p
     className="mb-1"
   >
-    Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+    description
   </p>
   <small>
     login
