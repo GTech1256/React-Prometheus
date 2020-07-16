@@ -11,8 +11,7 @@ const reposetory = {
     },
     url: 'url',
     stargazers: { totalCount: 999 }
-  },
-  __typename: 'SearchResultItemEdge' as 'SearchResultItemEdge'
+  }
 };
 
 describe('<Repositories />', () => {
