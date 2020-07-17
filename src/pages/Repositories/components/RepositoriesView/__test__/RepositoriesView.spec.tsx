@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 
 import RepositoriesView from '../RepositoriesView';
 
+
 const reposetory = {
   node: {
     name: 'name',

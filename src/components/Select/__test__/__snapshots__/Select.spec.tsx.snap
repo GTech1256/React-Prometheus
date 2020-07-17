@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Repositories /> should render correct 1`] = `
+exports[`<Select /> should render correct 1`] = `
 <div
   className="input-group mb-3 test-class-name"
 >

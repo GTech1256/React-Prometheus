@@ -4,7 +4,6 @@ import { ApolloProvider } from '@apollo/client';
 
 import { client } from '../../../services/graphql';
 
-
 import Repositories from '../Repositories';
 
 

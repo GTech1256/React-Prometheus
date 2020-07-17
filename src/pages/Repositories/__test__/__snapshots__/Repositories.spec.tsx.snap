@@ -3,6 +3,21 @@
 exports[`<Repositories /> should render correct 1`] = `
 <div>
   <div
+    className="alert alert-primary"
+    role="alert"
+  >
+    Репозитории с менее чем 
+    1600
+     звезд не будут найдены из-за  
+    <a
+      href="https://docs.github.com/en/github/searching-for-information-on-github/troubleshooting-search-queries#potential-timeouts"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      ограничений GitHub
+    </a>
+  </div>
+  <div
     className="input-group mb-3 "
   >
     <div
@@ -28,6 +43,28 @@ exports[`<Repositories /> should render correct 1`] = `
         Фильтр по лицензии...
       </option>
     </select>
+  </div>
+  <div
+    className="input-group mb-3 "
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <label
+        className="input-group-text"
+        htmlFor="repositoryName"
+      >
+        Имя репозитория
+      </label>
+    </div>
+    <input
+      aria-describedby="basic-addon1"
+      aria-label="repositoryName"
+      className="form-control"
+      name="repositoryName"
+      onChange={[Function]}
+      placeholder="Введите имя репозитория"
+    />
   </div>
   <p>
     Загрузка Репозиториев...
