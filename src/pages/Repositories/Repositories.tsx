@@ -8,24 +8,51 @@ import {
   getRepositiryQueryString,
   ALL_REPOSITORIES,
   MIN_STARS_COUNT,
-} from '../../services/graphql/queries/getAllRepositories';
+} from '../../services/graphql/queries/getRepositories';
+import Input, { InputProps } from '../../components/Input';
 import { SelectProps } from '../../components/Select';
+import Pagination from '../../components/Pagination';
 import withDebounce from '../../hoc/withDebounce';
-import Input from '../../components/Input';
+
 
 const InputWithDebounce = withDebounce(Input)
 const RepositoriesLicenseSelectWithDebounce = withDebounce(RepositoriesLicenseSelect)
 
 const Repositories = () => {
-  const [license, setLicense] = useState<string| undefined>(undefined)
-  const [name, setName] = useState<string| undefined>(undefined)
+  const [license, setLicense] = useState<string | undefined>(undefined)
+  const [name, setName] = useState<string | undefined>(undefined)
+  const [beforeCursor, setBeforeCursor] = useState<string | undefined>(undefined)
+  const [afterCursor, setAfterCursor] = useState<string | undefined>(undefined)
   
   const { loading, error, data } = useQuery<AllRepositoriesQueryType>(ALL_REPOSITORIES, {
-    variables: { query: getRepositiryQueryString({ license, name }) },
+    variables: {
+      query: getRepositiryQueryString({license, name }),
+      after: afterCursor,
+      before: beforeCursor
+    },
   });
 
-  const handleLicenseSelect = useCallback<SelectProps['onChange']>(setLicense, [])
-  const handleNameChange = useCallback<SelectProps['onChange']>(setName, [])
+  const resetPagination = useCallback(() => {
+    setBeforeCursor(undefined)
+    setAfterCursor(undefined)
+  }, [])
+
+  const handleLicenseSelect = useCallback<SelectProps['onChange']>((value) => {
+    resetPagination()
+    setLicense(value)
+  }, [resetPagination])
+  const handleNameChange = useCallback<InputProps['onChange']>((value) => {
+    resetPagination()
+    setName(value)
+  }, [resetPagination])
+  const handlePaginationNext = useCallback(() => {
+    setBeforeCursor('' + data!.search.pageInfo.endCursor)
+    setAfterCursor(undefined)
+  }, [data])
+  const handlePaginationPrev = useCallback(() => {
+    setBeforeCursor(undefined)
+    setAfterCursor('' + data!.search.pageInfo.startCursor)
+  }, [data])
 
   return (
     <div>
@@ -48,9 +75,15 @@ const Repositories = () => {
         placeholder="Введите имя репозитория"
         label="Имя репозитория"
       />
+      <Pagination
+        hasNextPage={data?.search.pageInfo.hasNextPage}
+        hasPreviousPage={data?.search.pageInfo.hasPreviousPage}
+        onNext={handlePaginationNext}
+        onPrev={handlePaginationPrev}
+      />
       {
-        loading ? <p>Загрузка Репозиториев...</p> :
-        error ? <p>Не удалось загрузить репозиториии</p> :
+        loading ? <p className="text-center">Загрузка Репозиториев...</p> :
+        error ? <p className="text-center">Не удалось загрузить репозиториии</p> :
         data?.search.edges.length === 0 ?
           <p>Репозиториев по такому фильтру не найдено</p> :
           <RepositoriesView reposetories={data!.search.edges} />

@@ -6,7 +6,7 @@ type UserType = {
   avatarUrl: string
 }
 
-type PageInfoType = {
+export type PageInfoType = {
   endCursor: string
   hasNextPage: boolean
   hasPreviousPage: boolean
@@ -38,6 +38,9 @@ type CodeOfConductType = {
 
 /** incomplete description */
 export type RepositoryType = {
+  id: number
+  databaseId: number
+  description: string
   codeOfConduct: CodeOfConductType
   name: string
   owner: RepositoryOwnerType

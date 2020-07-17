@@ -2,16 +2,18 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import RepositoriesView from '../RepositoriesView';
+import { RepositoryResponseType } from '../../../../../services/graphql/queries/getRepositories';
 
 
-const reposetory = {
+const reposetory: { node: RepositoryResponseType } = {
   node: {
     name: 'name',
     owner: {
       login: 'login'
     },
     url: 'url',
-    stargazers: { totalCount: 999 }
+    stargazers: { totalCount: 999 },
+    description: 'description'
   }
 };
 

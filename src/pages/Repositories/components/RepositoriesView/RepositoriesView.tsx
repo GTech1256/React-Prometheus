@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AllRepositoriesQueryType } from '../../../../services/graphql/queries/getAllRepositories';
+import { AllRepositoriesQueryType } from '../../../../services/graphql/queries/getRepositories';
 import RepositoryView from '../RepositoryView';
 
 
