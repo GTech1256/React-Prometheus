@@ -22,9 +22,6 @@ export const OverlayLoader = (Component: any, isShowLoading: boolean, CustomTag 
         this.setState({ isShowLoading })
       }
 
-      console.log({ CustomTag });
-  
-
       return (
         // @ts-ignore
         <CustomTag className={wrapperClasses.join(' ')}>

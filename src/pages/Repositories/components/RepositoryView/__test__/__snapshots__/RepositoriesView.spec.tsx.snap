@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RepositoryView /> should render correct 1`] = `
+<a
+  className="list-group-item list-group-item-action"
+  href="url"
+>
+  <div
+    className="d-flex w-100 justify-content-between"
+  >
+    <h5
+      className="mb-1"
+    >
+      name
+    </h5>
+    <span
+      className="badge badge-text-center badge-dark"
+    >
+      999
+    </span>
+  </div>
+  <p
+    className="mb-1"
+  >
+    description
+  </p>
+  <small>
+    login
+  </small>
+</a>
+`;

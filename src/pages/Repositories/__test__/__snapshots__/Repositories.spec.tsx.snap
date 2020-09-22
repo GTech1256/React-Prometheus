@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Repositories /> should render correct 1`] = `
+<div>
+  <div
+    className="alert alert-primary"
+    role="alert"
+  >
+    Репозитории с менее чем 
+    1600
+     звезд не будут найдены из-за  
+    <a
+      href="https://docs.github.com/en/github/searching-for-information-on-github/troubleshooting-search-queries#potential-timeouts"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      ограничений GitHub
+    </a>
+  </div>
+  <div
+    className="input-group mb-3 "
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <label
+        className="input-group-text"
+        htmlFor="repositoriesLicenseSelect"
+      >
+        Лицензия
+      </label>
+    </div>
+    <select
+      className="custom-select"
+      defaultValue="DEFAULT"
+      disabled={true}
+      id="repositoriesLicenseSelect"
+      onChange={[Function]}
+    >
+      <option
+        value="DEFAULT"
+      >
+        Фильтр по лицензии...
+      </option>
+    </select>
+  </div>
+  <div
+    className="input-group mb-3 "
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <label
+        className="input-group-text"
+        htmlFor="repositoryName"
+      >
+        Имя репозитория
+      </label>
+    </div>
+    <input
+      aria-describedby="basic-addon1"
+      aria-label="repositoryName"
+      className="form-control"
+      name="repositoryName"
+      onChange={[Function]}
+      placeholder="Введите имя репозитория"
+    />
+  </div>
+  <nav
+    aria-label="Page navigation example"
+  >
+    <ul
+      className="pagination justify-content-center"
+    >
+      <li
+        className="page-item disabled"
+      >
+        <button
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            «
+          </span>
+          <span
+            className="sr-only"
+          >
+            Предыдущая
+          </span>
+        </button>
+      </li>
+      <li
+        className="page-item disabled"
+      >
+        <button
+          className="page-link"
+          disabled={true}
+          onClick={[Function]}
+        >
+          <span
+            aria-hidden="true"
+          >
+            »
+          </span>
+          <span
+            className="sr-only"
+          >
+            Следующая
+          </span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+  <p
+    className="text-center"
+  >
+    Загрузка Репозиториев...
+  </p>
+</div>
+`;

@@ -13,7 +13,7 @@ export const Notes = ({ notes, onRemove }: Props) => (
   <ul className="list-group">
     {
       // @ts-ignore
-      notes.map(note => <Note note={note} onRemove={onRemove} />)
+      notes.map(note => <Note key={note.id} note={note} onRemove={onRemove} />)
     }
   </ul>
 )

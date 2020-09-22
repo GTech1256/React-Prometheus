@@ -1,8 +1,11 @@
 import React, { Fragment, useContext, useEffect } from 'react';
-import { FormWithOverlayLoader } from '../components/Form';
-import { Notes } from '../components/Notes';
+
 import { FirebaseContext } from '../context/firebase/firebaseContext';
+
+import { FormWithOverlayLoader } from '../components/Form';
 import { Loader } from '../components/Loader';
+import { Notes } from '../components/Notes';
+
 
 export const Home = () => {
   // @ts-ignore

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Select /> should render correct 1`] = `
+<div
+  className="input-group mb-3 test-class-name"
+>
+  <div
+    className="input-group-prepend"
+  >
+    <label
+      className="input-group-text"
+      htmlFor="testSelect"
+    >
+      testTitle
+    </label>
+  </div>
+  <select
+    className="custom-select"
+    defaultValue="DEFAULT"
+    disabled={false}
+    id="testSelect"
+    onChange={[Function]}
+  >
+    <option
+      value="DEFAULT"
+    >
+      Фильтр по лицензии...
+    </option>
+    <option
+      value="value1"
+    >
+      lebel1
+    </option>
+    <option
+      value="value3"
+    >
+      lebel2
+    </option>
+  </select>
+</div>
+`;

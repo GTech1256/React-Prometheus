@@ -1,29 +1,37 @@
 import React from 'react';
+import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import { client } from './services/graphql';
+
+import { FirebaseState } from './context/firebase/FirebaseState';
+import { AlertState } from './context/alert/AlertState';
 
 import { Navbar } from './components/Navbar'
 import { Alert } from './components/Alert'
 
-import { Home } from './pages/Home'
+import Repositories, { ROUTE_URL } from './pages/Repositories';
 import { About } from './pages/About'
+import { Home } from './pages/Home'
 
-import { AlertState } from './context/alert/AlertState';
-import { FirebaseState } from './context/firebase/FirebaseState';
 
 
 export default () => (
-  <FirebaseState>
-    <AlertState>
-      <BrowserRouter>
-      <Navbar />
-        <div className="container pt-4">
-          <Alert />
-          <Switch>
-            <Route path={'/'} exact component={Home}/>
-            <Route path={'/about'} exact component={About}/>
-          </Switch>
-        </div>
-      </BrowserRouter>
-    </AlertState>
-  </FirebaseState>
+  <ApolloProvider client={client}>
+    <FirebaseState>
+      <AlertState>
+        <BrowserRouter>
+        <Navbar />
+          <div className="container pt-4">
+            <Alert />
+            <Switch>
+              <Route path='/' exact component={Home}/>
+              <Route path='/about' exact component={About}/>
+              <Route path={ROUTE_URL} exact component={Repositories} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </AlertState>
+    </FirebaseState>
+  </ApolloProvider>
 );
